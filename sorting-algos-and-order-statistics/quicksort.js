@@ -1,28 +1,31 @@
-// 1st practice session(30 min.)
-function quicksort(A, p, r){
+// 2nd practice session(11 min)
+// Much more improvement than the first practice session.
 
-    
-
-    const p = partition(A, 1, n);
-
-    quicksort(A, p, q);
-    quicksort(A, q + 1, r);
-
-};
-
-function partition(A, p, r){
-    const x = A[r];
-
-   let i = p - 1; 
-
-    for(let j = p; j < r; j++){
-        if(A[j] <= x){
-            i++;
-         // swap elements.
-        }
+function quicksort(A, p, r) {
+    if(p >= r){
+        return;
     }
 
-    //return pivot;
+    const q = partition(A, p, r);
+
+    quicksort(A, p, q - 1);
+    quicksort(A, q + 1, r);
 }
 
-// Practice the partition method.
+function partition(A, p, r) {
+      const x = A[r];
+
+      let i = p - 1;
+
+      for (let j = p; j < r; j++) {
+          if(A[j] < x){
+             i++;
+             const temp = A[j];
+             A[j] = A[i];
+             A[i] = temp;
+          }
+      }
+      A[i + 1] = x;
+
+      return i;
+}
